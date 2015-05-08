@@ -2,6 +2,10 @@ package pong;
 
 public class Ball implements MovingObject {
 
+  private static final double DEFAULT_START_Y = 50.0;
+
+  private static final double DEFAULT_START_X = 50.0;
+
   /**
    * X relatif (0-100)
    */
@@ -75,4 +79,13 @@ public class Ball implements MovingObject {
     this.diameter = diameter;
   }
 
+  public Ball(double diameter) {
+    this(diameter, DEFAULT_START_X, DEFAULT_START_Y);
+  }
+
+  public Ball(double diameter, double defaultStartX, double defaultStartY) {
+    this.x = defaultStartX;
+    this.y = defaultStartY;
+    this.diameter = diameter;
+  }
 }

@@ -2,11 +2,11 @@ package pong;
 
 public class Paddle {
 
-  private static final int DEFAULT_LENGTH = 30;
-  private static final int DEFAULT_POSITION = 50;
+  private static final double DEFAULT_LENGTH = 30;
+  private static final double DEFAULT_POSITION = 50;
   private PlayerType type;
-  private int length;
-  private int position;
+  private double length;
+  private double position;
 
   public Paddle(PlayerType type) {
     this.type = type;
@@ -14,11 +14,11 @@ public class Paddle {
     this.position = Paddle.DEFAULT_POSITION;
   }
 
-  public int getVerticalRelativePosition() {
-    return this.position;
+  public double getVerticalRelativePosition() {
+    return position;
   }
 
-  public int getLength() {
+  public double getLength() {
     return length;
   }
 
