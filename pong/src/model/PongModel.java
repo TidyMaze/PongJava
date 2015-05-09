@@ -99,6 +99,10 @@ public class PongModel {
     HashMap<PlayerType, Double> map = new HashMap<>();
     map.put(PlayerType.LEFT_PLAYER, PongModel.BORDER_GAP_REL);
     map.put(PlayerType.RIGHT_PLAYER, 100.0 - PongModel.BORDER_GAP_REL);
+
+    if (!map.containsKey(type))
+      throw new RuntimeException("aucun type " + type);
+
     return map.get(type);
   }
 }
