@@ -5,7 +5,4 @@ public interface RectangularShaped {
 
   public double getHeight();
 
-  public double getX();
-
-  public double getY();
 }
