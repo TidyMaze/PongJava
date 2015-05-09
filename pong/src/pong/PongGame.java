@@ -2,6 +2,9 @@ package pong;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class PongGame extends KeyAdapter {
 
@@ -13,7 +16,14 @@ public class PongGame extends KeyAdapter {
   }
 
   public void startGame() {
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    scheduler.scheduleAtFixedRate(new Runnable() {
 
+      @Override
+      public void run() {
+        model.update();
+      }
+    }, 0, 30, TimeUnit.MILLISECONDS);
   }
 
   @Override

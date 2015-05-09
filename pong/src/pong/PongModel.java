@@ -32,4 +32,8 @@ public class PongModel extends Observable implements Observer {
     this.setChanged();
     this.notifyObservers();
   }
+
+  public void update() {
+    ball.update();
+  }
 }

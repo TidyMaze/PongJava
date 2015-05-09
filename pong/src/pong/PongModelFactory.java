@@ -15,8 +15,7 @@ public class PongModelFactory {
   }
 
   private static Ball createBall() {
-    Ball ball = new Ball(DEFAULT_BALL_DIAMETER, 50, 50);
-    return ball;
+    return new Ball();
   }
 
   private ArrayList<Paddle> createPaddles() {
