@@ -7,9 +7,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 public class PongWindow extends JFrame {
-
-  private static final long serialVersionUID = -4071095185216071270L;
-
   private static final int PREFERRED_WIDTH = 1000;
   private static final int PREFERRED_HEIGHT = 500;
 

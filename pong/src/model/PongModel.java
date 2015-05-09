@@ -11,7 +11,7 @@ public class PongModel {
 
   private List<Paddle> paddles;
   private Ball ball;
-  private Map<RectangularShaped, Rectangle2D.Double> assosBoundingBoxes;
+  private Map<RectangularShaped, MyDoubleRectangle2D> assosBoundingBoxes;
 
   /**
    * Constructeur principal, prend en paramètres les composants du model
@@ -33,7 +33,7 @@ public class PongModel {
   }
 
   private void createRectangleForBall() {
-    assosBoundingBoxes.put(ball, new Rectangle2D.Double());
+    assosBoundingBoxes.put(ball, new MyDoubleRectangle2D());
   }
 
   private void createRectanglesForPaddles() {
@@ -42,7 +42,7 @@ public class PongModel {
   }
 
   private void createRectangleFor(Paddle p) {
-    assosBoundingBoxes.put(p, new Rectangle2D.Double());
+    assosBoundingBoxes.put(p, new MyDoubleRectangle2D());
   }
 
   public List<Paddle> getPaddles() {
@@ -79,7 +79,7 @@ public class PongModel {
     Rectangle2D rectPaddle = this.assosBoundingBoxes.get(p);
     rectPaddle.setRect(PongGamePanel.calculateHorizontalRelativePosition(p.getPlayerType())
         - p.getWidth() / 2,
-        p.getVerticalRelativePosition() - p.getHeight() / 2,
+        p.getVerticalPosition() - p.getHeight() / 2,
         ball.getDiameter(), ball.getDiameter());
     System.out.println("paddle " + p.getPlayerType() + " : " + rectPaddle);
   }

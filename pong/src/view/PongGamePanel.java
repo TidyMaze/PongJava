@@ -13,9 +13,6 @@ import Utils.CalcUtils;
 import Utils.ConversionUtils;
 
 public class PongGamePanel extends JPanel {
-
-  private static final long serialVersionUID = 4807803417286222422L;
-
   private static final int BORDER_GAP_REL = 10;
   private PongModel pongModel;
 
@@ -94,7 +91,7 @@ public class PongGamePanel extends JPanel {
     PlayerType type = p.getPlayerType();
 
     int horizontalRelPosition = calculateHorizontalRelativePosition(type);
-    double verticalRelPosition = p.getVerticalRelativePosition();
+    double verticalRelPosition = p.getVerticalPosition();
     double paddleHeight = p.getHeight();
     double paddleWidth = p.getWidth();
 

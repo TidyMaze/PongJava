@@ -9,18 +9,18 @@ public class Paddle implements RectangularShaped {
   private static final double DEFAULT_WIDTH = 2;
   private PlayerType type;
   private double height;
-  private double position;
+  private double verticalPosition;
   private double width;
 
   public Paddle(PlayerType type) {
     this.type = type;
     this.height = Paddle.DEFAULT_LENGTH;
     this.width = Paddle.DEFAULT_WIDTH;
-    this.position = Paddle.DEFAULT_POSITION;
+    this.verticalPosition = Paddle.DEFAULT_POSITION;
   }
 
-  public double getVerticalRelativePosition() {
-    return position;
+  public double getVerticalPosition() {
+    return verticalPosition;
   }
 
   public PlayerType getPlayerType() {
@@ -28,7 +28,7 @@ public class Paddle implements RectangularShaped {
   }
 
   public void addVerticalPosition(double offset) {
-    this.position += offset;
+    this.verticalPosition += offset;
   }
 
   @Override
