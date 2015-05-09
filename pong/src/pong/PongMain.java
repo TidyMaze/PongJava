@@ -9,6 +9,7 @@ public class PongMain {
 
     PongGamePanel gamePanel = new PongGamePanelFactory().createGamePanel(model);
     PongWindow pongWindow = new PongWindow(gamePanel);
+    pongWindow.addKeyListener(pongGame);
 
     pongWindow.setVisible(true);
 

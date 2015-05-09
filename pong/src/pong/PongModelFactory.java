@@ -11,7 +11,6 @@ public class PongModelFactory {
   public PongModel createModel2Players() {
     ArrayList<Paddle> paddles = createPaddles();
     Ball ball = createBall();
-
     return new PongModel(paddles, ball);
   }
 

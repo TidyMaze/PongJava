@@ -1,6 +1,8 @@
 package pong;
 
-public class Ball implements MovingObject {
+import java.util.Observable;
+
+public class Ball extends Observable implements MovingObject {
 
   private static final double DEFAULT_START_Y = 50.0;
 

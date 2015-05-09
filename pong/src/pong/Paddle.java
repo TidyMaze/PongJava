@@ -1,6 +1,8 @@
 package pong;
 
-public class Paddle {
+import java.util.Observable;
+
+public class Paddle extends Observable {
 
   private static final double DEFAULT_LENGTH = 30;
   private static final double DEFAULT_POSITION = 50;
@@ -24,5 +26,11 @@ public class Paddle {
 
   public PlayerType getPlayerType() {
     return type;
+  }
+
+  public void addVerticalPosition(double offset) {
+    this.position += offset;
+    this.setChanged();
+    this.notifyObservers();
   }
 }

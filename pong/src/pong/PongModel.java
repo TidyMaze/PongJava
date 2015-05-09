@@ -1,8 +1,10 @@
 package pong;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PongModel {
+public class PongModel extends Observable implements Observer {
 
   private List<Paddle> paddles;
   private Ball ball;
@@ -10,6 +12,11 @@ public class PongModel {
   public PongModel(List<Paddle> paddles, Ball ball) {
     this.paddles = paddles;
     this.ball = ball;
+
+    for (Paddle p : paddles)
+      p.addObserver(this);
+
+    ball.addObserver(this);
   }
 
   public List<Paddle> getPaddles() {
@@ -20,4 +27,9 @@ public class PongModel {
     return ball;
   }
 
+  @Override
+  public void update(Observable o, Object arg) {
+    this.setChanged();
+    this.notifyObservers();
+  }
 }
