@@ -103,60 +103,65 @@ public class Ball extends Observable implements MovingObject {
     x += horizontalSpeed;
     y += verticalSpeed;
 
-    if (isOutOfScreen()) {
-      System.out.println("Out of screen");
+    if (isOutOfScreen())
       moveBallInScreen();
-    }
 
     this.setChanged();
     notifyObservers();
   }
 
   private void moveBallInScreen() {
-    if (isOutLeft()) {
-      System.out.println("out left");
-      double rayon = diameter / 2;
-      double posiCenter = x;
-      double posiLeft = posiCenter - rayon;
-      double delta = posiLeft - 0;
-      double newLeft = -delta;
-      double newCenter = newLeft + rayon;
-      this.x = newCenter + 1;
-      horizontalSpeed = -horizontalSpeed;
-    }
-    if (isOutRight()) {
-      System.out.println("out right");
-      double rayon = diameter / 2;
-      double posiCenter = x;
-      double posiRight = posiCenter + rayon;
-      double delta = posiRight - 100;
-      double newRight = 100 - delta;
-      double newCenter = newRight - rayon;
-      this.x = newCenter - 1;
-      horizontalSpeed = -horizontalSpeed;
-    }
-    if (isOutUp()) {
-      System.out.println("out up");
-      double rayon = diameter / 2;
-      double posiCenter = y;
-      double posiUp = posiCenter - rayon;
-      double delta = posiUp - 0;
-      double newUp = -delta;
-      double newCenter = newUp + rayon;
-      this.y = newCenter + 1;
-      verticalSpeed = -verticalSpeed;
-    }
-    if (isOutDown()) {
-      System.out.println("out down");
-      double rayon = diameter / 2;
-      double posiCenter = y;
-      double posiDown = posiCenter + rayon;
-      double delta = posiDown - 100;
-      double newDown = 100 - delta;
-      double newCenter = newDown - rayon;
-      this.y = newCenter - 1;
-      verticalSpeed = -verticalSpeed;
-    }
+    double rayon = diameter / 2;
+    if (isOutLeft())
+      moveBallInLeft(rayon);
+    if (isOutRight())
+      moveBallInRight(rayon);
+    if (isOutUp())
+      moveBallInUp(rayon);
+    if (isOutDown())
+      moveBallInDown(rayon);
+  }
+
+  private void moveBallInDown(double rayon) {
+    System.out.println("out up");
+    y = moveInIncrease(rayon, y);
+    invertVSpeed();
+  }
+
+
+  private void moveBallInUp(double rayon) {
+    System.out.println("out up");
+    y = moveInDecrease(rayon, y);
+    invertVSpeed();
+  }
+
+
+  private void moveBallInRight(double rayon) {
+    System.out.println("out right");
+    x = moveInIncrease(rayon, x);
+    invertHSpeed();
+  }
+
+  private void moveBallInLeft(double rayon) {
+    System.out.println("out left");
+    x = moveInDecrease(rayon, x);
+    invertHSpeed();
+  }
+
+  private static double moveInDecrease(double rayon, double coord) {
+    return -coord + 2 * rayon;
+  }
+
+  private static double moveInIncrease(double rayon, double coord) {
+    return 200 - coord - 2 * rayon;
+  }
+
+  private void invertVSpeed() {
+    verticalSpeed = -verticalSpeed;
+  }
+
+  private void invertHSpeed() {
+    horizontalSpeed = -horizontalSpeed;
   }
 
   private boolean isOutOfScreen() {
