@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Optional;
@@ -115,35 +117,37 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
 
 		Optional<MyDoubleRectangle2D> collisionOpt;
 
-		while ((collisionOpt =
-				map.values().stream().filter(o -> rectBall.intersects(o))
-						.findFirst())
-				.isPresent()) {
+		while ((collisionOpt = map.values().stream()
+				.filter(o -> o != rectBall && rectBall.intersects(o))
+				.findFirst()).isPresent()) {
 			MyDoubleRectangle2D collision = collisionOpt.get();
-			getMovingDirections();
+			List<Direction> directions = getMovingDirections();
+
 		}
 	}
 
-	private void getMovingDirections() {
-
+	/**
+	 * Retourne la liste des directions dans lesquelles la balle se déplace (lié à Hspeed et Vspeed)
+	 * 
+	 * @return
+	 */
+	private List<Direction> getMovingDirections() {
+		List<Direction> dir = new ArrayList<>();
+		if (this.getVerticalSpeed() < 0) dir.add(Direction.UP);
+		else if (this.getVerticalSpeed() > 0) dir.add(Direction.DOWN);
+		if (this.getHorizontalSpeed() < 0) dir.add(Direction.LEFT);
+		else if (this.getVerticalSpeed() > 0) dir.add(Direction.RIGHT);
+		return dir;
 	}
 
 	/**
 	 * Replace la balle dans l'écran si elle dépasse de l'écran
 	 */
 	private void moveBallInScreen() {
-		if (isOutLeft()) {
-			moveBallInLeft();
-		}
-		if (isOutRight()) {
-			moveBallInRight();
-		}
-		if (isOutUp()) {
-			moveBallInUp();
-		}
-		if (isOutDown()) {
-			moveBallInDown();
-		}
+		if (isOutLeft()) moveBallInLeft();
+		if (isOutRight()) moveBallInRight();
+		if (isOutUp()) moveBallInUp();
+		if (isOutDown()) moveBallInDown();
 	}
 
 	private void moveBallInDown() {
