@@ -196,4 +196,12 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
   public double getHeight() {
     return diameter;
   }
+
+  public double getLeft() {
+    return x - getWidth() / 2;
+  }
+
+  public double getTop() {
+    return y - getHeight() / 2;
+  }
 }

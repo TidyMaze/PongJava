@@ -13,7 +13,6 @@ import Utils.CalcUtils;
 import Utils.ConversionUtils;
 
 public class PongGamePanel extends JPanel {
-  private static final int BORDER_GAP_REL = 10;
   private PongModel pongModel;
 
   /**
@@ -90,7 +89,7 @@ public class PongGamePanel extends JPanel {
   private void drawPaddle(Paddle p, Graphics g) {
     PlayerType type = p.getPlayerType();
 
-    int horizontalRelPosition = calculateHorizontalRelativePosition(type);
+    int horizontalRelPosition = PongModel.calculateHorizontalRelativePosition(type);
     double verticalRelPosition = p.getVerticalPosition();
     double paddleHeight = p.getHeight();
     double paddleWidth = p.getWidth();
@@ -162,25 +161,6 @@ public class PongGamePanel extends JPanel {
     Color oldColor = g.getColor();
     g.setColor(color);
     return oldColor;
-  }
-
-  /**
-   * Calcule la position horizontale d'une raquette selon son type
-   * 
-   * @param type type de la raquete
-   * @return position relative (0-100) de la raquette, en prenant en compte le décalage dû à la
-   *         bordure
-   * @throws RuntimeException Le type de joueur est invalide
-   */
-  public static int calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
-    switch (type) {
-      case LEFT_PLAYER:
-        return BORDER_GAP_REL;
-      case RIGHT_PLAYER:
-        return 100 - BORDER_GAP_REL;
-      default:
-        throw new RuntimeException("Type de joueur invalide : " + type);
-    }
   }
 
   /**

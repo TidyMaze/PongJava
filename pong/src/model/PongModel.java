@@ -5,13 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import view.PongGamePanel;
-
 public class PongModel {
 
   private List<Paddle> paddles;
   private Ball ball;
   private Map<RectangularShaped, MyDoubleRectangle2D> assosBoundingBoxes;
+  public static final int BORDER_GAP_REL = 10;
 
   /**
    * Constructeur principal, prend en paramètres les composants du model
@@ -65,8 +64,7 @@ public class PongModel {
 
   private void updateBallRectangle() {
     Rectangle2D rectBall = this.assosBoundingBoxes.get(ball);
-    rectBall.setRect(ball.getX() - ball.getDiameter() / 2, ball.getY() - ball.getDiameter() / 2,
-        ball.getDiameter(), ball.getDiameter());
+    rectBall.setRect(ball.getLeft(), ball.getTop(), ball.getDiameter(), ball.getDiameter());
     System.out.println("ball : " + rectBall);
   }
 
@@ -77,10 +75,26 @@ public class PongModel {
 
   private void updatePaddleRectangle(Paddle p) {
     Rectangle2D rectPaddle = this.assosBoundingBoxes.get(p);
-    rectPaddle.setRect(PongGamePanel.calculateHorizontalRelativePosition(p.getPlayerType())
-        - p.getWidth() / 2,
-        p.getVerticalPosition() - p.getHeight() / 2,
-        ball.getDiameter(), ball.getDiameter());
+    rectPaddle.setRect(p.getLeft(), p.getTop(), p.getWidth(), p.getHeight());
     System.out.println("paddle " + p.getPlayerType() + " : " + rectPaddle);
+  }
+
+  /**
+   * Calcule la position horizontale d'une raquette selon son type
+   * 
+   * @param type type de la raquete
+   * @return position relative (0-100) de la raquette, en prenant en compte le décalage dû à la
+   *         bordure
+   * @throws RuntimeException Le type de joueur est invalide
+   */
+  public static int calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
+    switch (type) {
+      case LEFT_PLAYER:
+        return PongModel.BORDER_GAP_REL;
+      case RIGHT_PLAYER:
+        return 100 - PongModel.BORDER_GAP_REL;
+      default:
+        throw new RuntimeException("Type de joueur invalide : " + type);
+    }
   }
 }

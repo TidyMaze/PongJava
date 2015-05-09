@@ -40,4 +40,12 @@ public class Paddle implements RectangularShaped {
   public double getHeight() {
     return height;
   }
+
+  public double getLeft() {
+    return PongModel.calculateHorizontalRelativePosition(type) - width / 2;
+  }
+
+  public double getTop() {
+    return verticalPosition - height / 2;
+  }
 }
