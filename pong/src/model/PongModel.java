@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import view.PongGamePanel;
+
 public class PongModel {
 
   private List<Paddle> paddles;
@@ -69,8 +71,16 @@ public class PongModel {
   }
 
   private void updatePaddlesRectangles() {
-    for (Paddle p : paddles) {
+    for (Paddle p : paddles)
+      updatePaddleRectangle(p);
+  }
 
-    }
+  private void updatePaddleRectangle(Paddle p) {
+    Rectangle2D rectPaddle = this.assosBoundingBoxes.get(p);
+    rectPaddle.setRect(PongGamePanel.calculateHorizontalRelativePosition(p.getPlayerType())
+        - PongGamePanel.paddleWidth / 2,
+        p.getVerticalRelativePosition() - p.getLength() / 2,
+        ball.getDiameter(), ball.getDiameter());
+    System.out.println("paddle " + p.getPlayerType() + " : " + rectPaddle);
   }
 }

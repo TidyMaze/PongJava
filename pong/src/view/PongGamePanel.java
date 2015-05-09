@@ -17,7 +17,7 @@ public class PongGamePanel extends JPanel {
   private static final long serialVersionUID = 4807803417286222422L;
 
   private static final int BORDER_GAP_REL = 10;
-  private static final int paddleWidth = 2;
+  public static final int paddleWidth = 2;
   private PongModel pongModel;
 
   /**
@@ -175,7 +175,7 @@ public class PongGamePanel extends JPanel {
    *         bordure
    * @throws RuntimeException Le type de joueur est invalide
    */
-  private static int calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
+  public static int calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
     switch (type) {
       case LEFT_PLAYER:
         return BORDER_GAP_REL;
