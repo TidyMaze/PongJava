@@ -1,7 +1,7 @@
 package model;
 
 public interface Located {
-  double getX();
+	double getX();
 
-  double getY();
+	double getY();
 }

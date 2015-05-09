@@ -7,5 +7,5 @@ package model;
  *
  */
 public enum PlayerType {
-  LEFT_PLAYER, RIGHT_PLAYER
+	LEFT_PLAYER, RIGHT_PLAYER
 }

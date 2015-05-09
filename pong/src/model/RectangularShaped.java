@@ -1,8 +1,8 @@
 package model;
 
 public interface RectangularShaped {
-  public double getWidth();
+	public double getWidth();
 
-  public double getHeight();
+	public double getHeight();
 
 }

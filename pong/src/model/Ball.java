@@ -117,7 +117,7 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
 
 		while ((collisionOpt =
 				map.values().stream().filter(o -> rectBall.intersects(o))
-				.findFirst())
+						.findFirst())
 				.isPresent()) {
 			MyDoubleRectangle2D collision = collisionOpt.get();
 			getMovingDirections();

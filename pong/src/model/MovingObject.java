@@ -2,7 +2,7 @@ package model;
 
 public interface MovingObject extends Located {
 
-  double getHorizontalSpeed();
+	double getHorizontalSpeed();
 
-  double getVerticalSpeed();
+	double getVerticalSpeed();
 }

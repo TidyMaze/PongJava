@@ -14,42 +14,42 @@ import view.PongGamePanel;
 
 public class PongGame extends KeyAdapter {
 
-  private static final double MOVE_REL = 4;
-  PongModel model;
-  PongGamePanel panel;
+	private static final double MOVE_REL = 4;
+	PongModel model;
+	PongGamePanel panel;
 
-  public PongGame(PongModel model, PongGamePanel panel) {
-    this.model = model;
-    this.panel = panel;
-  }
+	public PongGame(PongModel model, PongGamePanel panel) {
+		this.model = model;
+		this.panel = panel;
+	}
 
-  public void startGame() {
-    new Timer(16, new ActionListener() {
+	public void startGame() {
+		new Timer(16, new ActionListener() {
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        model.update();
-        panel.update();
-        Toolkit.getDefaultToolkit().sync();
-      }
-    }).start();
-  }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.update();
+				panel.update();
+				Toolkit.getDefaultToolkit().sync();
+			}
+		}).start();
+	}
 
-  @Override
-  public void keyPressed(KeyEvent event) {
-    int keyCode = event.getKeyCode();
-    Paddle paddle;
-    if (isKey(KeyEvent.VK_UP, keyCode)) {
-      paddle = model.getPaddles().get(0);
-      paddle.addVerticalPosition(-MOVE_REL);
-    }
-    if (isKey(KeyEvent.VK_DOWN, keyCode)) {
-      paddle = model.getPaddles().get(0);
-      paddle.addVerticalPosition(MOVE_REL);
-    }
-  }
+	@Override
+	public void keyPressed(KeyEvent event) {
+		int keyCode = event.getKeyCode();
+		Paddle paddle;
+		if (isKey(KeyEvent.VK_UP, keyCode)) {
+			paddle = model.getPaddles().get(0);
+			paddle.addVerticalPosition(-MOVE_REL);
+		}
+		if (isKey(KeyEvent.VK_DOWN, keyCode)) {
+			paddle = model.getPaddles().get(0);
+			paddle.addVerticalPosition(MOVE_REL);
+		}
+	}
 
-  private static boolean isKey(int keyToCompare, int keyCompared) {
-    return keyToCompare == keyCompared;
-  }
+	private static boolean isKey(int keyToCompare, int keyCompared) {
+		return keyToCompare == keyCompared;
+	}
 }
