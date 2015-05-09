@@ -1,8 +1,7 @@
 package model;
 
-import java.util.Observable;
 
-public class Paddle extends Observable {
+public class Paddle {
 
   private static final double DEFAULT_LENGTH = 30;
   private static final double DEFAULT_POSITION = 50;
@@ -30,7 +29,5 @@ public class Paddle extends Observable {
 
   public void addVerticalPosition(double offset) {
     this.position += offset;
-    this.setChanged();
-    this.notifyObservers();
   }
 }

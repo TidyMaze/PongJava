@@ -10,12 +10,8 @@ public class PongModelFactory {
 
   public PongModel createModel2Players() {
     ArrayList<Paddle> paddles = createPaddles();
-    Ball ball = createBall();
+    Ball ball = new Ball();
     return new PongModel(paddles, ball);
-  }
-
-  private static Ball createBall() {
-    return new Ball();
   }
 
   private ArrayList<Paddle> createPaddles() {
