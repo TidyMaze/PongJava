@@ -12,11 +12,6 @@ public class PongModel extends Observable implements Observer {
   public PongModel(List<Paddle> paddles, Ball ball) {
     this.paddles = paddles;
     this.ball = ball;
-
-    for (Paddle p : paddles)
-      p.addObserver(this);
-
-    ball.addObserver(this);
   }
 
   public List<Paddle> getPaddles() {

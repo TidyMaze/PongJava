@@ -2,12 +2,10 @@ package pong;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JPanel;
 
-public class PongGamePanel extends JPanel implements Observer {
+public class PongGamePanel extends JPanel {
 
   private static final long serialVersionUID = 4807803417286222422L;
 
@@ -23,7 +21,7 @@ public class PongGamePanel extends JPanel implements Observer {
   public PongGamePanel(PongModel model) {
     this.pongModel = model;
     this.setBackground(Color.BLACK);
-    pongModel.addObserver(this);
+    setIgnoreRepaint(true);
   }
 
 
@@ -191,9 +189,7 @@ public class PongGamePanel extends JPanel implements Observer {
     g.fillRect(0, 0, this.getWidth(), this.getHeight());
   }
 
-
-  @Override
-  public void update(Observable o, Object arg) {
+  public void update() {
     this.repaint();
   }
 }

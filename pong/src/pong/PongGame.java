@@ -1,29 +1,34 @@
 package pong;
 
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
+import javax.swing.Timer;
 
 public class PongGame extends KeyAdapter {
 
   private static final double MOVE_REL = 4;
   private PongModel model;
+  private PongGamePanel panel;
 
-  public PongGame(PongModel model) {
+  public PongGame(PongModel model, PongGamePanel panel) {
     this.model = model;
+    this.panel = panel;
   }
 
   public void startGame() {
-    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    scheduler.scheduleAtFixedRate(new Runnable() {
+    new Timer(16, new ActionListener() {
 
       @Override
-      public void run() {
+      public void actionPerformed(ActionEvent e) {
         model.update();
+        panel.update();
+        Toolkit.getDefaultToolkit().sync();
       }
-    }, 0, 30, TimeUnit.MILLISECONDS);
+    }).start();
   }
 
   @Override

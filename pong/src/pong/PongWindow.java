@@ -21,6 +21,7 @@ public class PongWindow extends JFrame {
     Container cp = this.getContentPane();
     cp.setLayout(new BorderLayout());
     cp.add(gamePanel, BorderLayout.CENTER);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.pack();
   }
 }

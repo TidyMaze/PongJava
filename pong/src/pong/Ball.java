@@ -6,11 +6,11 @@ public class Ball extends Observable implements MovingObject {
 
   private static final double DEFAULT_START_Y = 50.0;
 
-  private static final double DEFAULT_START_X = 25.0;
+  private static final double DEFAULT_START_X = 50.0;
 
-  private static final double DEFAULT_H_SPEED = 1;
+  private static final double DEFAULT_H_SPEED = 0.75;
 
-  private static final double DEFAULT_V_SPEED = 1;
+  private static final double DEFAULT_V_SPEED = 0.50;
 
   private static final double DEFAULT_DIAMETER = 3;
 
@@ -108,7 +108,6 @@ public class Ball extends Observable implements MovingObject {
       moveBallInScreen();
     }
 
-    System.out.println("x=" + x + ",y=" + y);
     this.setChanged();
     notifyObservers();
   }
