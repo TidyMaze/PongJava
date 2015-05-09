@@ -10,6 +10,7 @@ public class PongModel {
   private List<Paddle> paddles;
   private Ball ball;
   private Map<RectangularShaped, MyDoubleRectangle2D> assosBoundingBoxes;
+  private List<Wall> walls;
   public static final int BORDER_GAP_REL = 10;
 
   /**
@@ -18,9 +19,10 @@ public class PongModel {
    * @param paddles liste des raquettes à utiliser dans la partie
    * @param ball balle à utiliser dans la partie
    */
-  public PongModel(List<Paddle> paddles, Ball ball) {
+  public PongModel(List<Paddle> paddles, Ball ball, List<Wall> walls) {
     this.paddles = paddles;
     this.ball = ball;
+    this.walls = walls;
     this.assosBoundingBoxes = new HashMap<>();
 
     createRectangles();
@@ -33,9 +35,8 @@ public class PongModel {
   }
 
   private void createWalls() {
-    Wall newWall = WallFactory.createWall(Position.LEFT);
-    assosBoundingBoxes.put(newWall,
-        MyDoubleRectangle2DFactory.createRectangleFrom(newWall));
+    for (Wall w : walls)
+      assosBoundingBoxes.put(w, MyDoubleRectangle2DFactory.createRectangleFrom(w));
   }
 
   private void createRectangleForBall() {

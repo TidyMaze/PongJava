@@ -1,23 +1,26 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PongModelFactory {
   List<PlayerType> playerTypes = Arrays.asList(PlayerType.LEFT_PLAYER, PlayerType.RIGHT_PLAYER);
 
   public PongModel createModel2Players() {
-    ArrayList<Paddle> paddles = createPaddles();
+    List<Paddle> paddles = createPaddles();
     Ball ball = new Ball();
-    return new PongModel(paddles, ball);
+    List<Wall> walls = createWalls();
+    return new PongModel(paddles, ball, walls);
   }
 
-  private ArrayList<Paddle> createPaddles() {
-    ArrayList<Paddle> paddles = new ArrayList<>();
-    for (PlayerType type : playerTypes)
-      paddles.add(new Paddle(type));
-    return paddles;
+  private static List<Wall> createWalls() {
+    return Arrays.stream(Position.values())
+        .map(p -> WallFactory.createWall(p))
+        .collect(Collectors.toList());
   }
 
+  private List<Paddle> createPaddles() {
+    return playerTypes.stream().map(Paddle::new).collect(Collectors.toList());
+  }
 }
