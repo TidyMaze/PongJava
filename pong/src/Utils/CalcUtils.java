@@ -25,18 +25,6 @@ public class CalcUtils {
     return map;
   }
 
-  private static double returnAlignementOrException(Position position, HashMap<Position, Double> map)
-      throws RuntimeException {
-    testPositionOrException(position, map);
-    return map.get(position);
-  }
-
-  private static void testPositionOrException(Position position, HashMap<Position, Double> map)
-      throws RuntimeException {
-    if (!map.containsKey(position))
-      throw new RuntimeException("aucune position " + position);
-  }
-
   public static double alignY(Position position, int wallWidth) {
     HashMap<Position, Double> map = createMapAlignY(wallWidth);
     return returnAlignementOrException(position, map);
@@ -50,4 +38,12 @@ public class CalcUtils {
     map.put(Position.BOTTOM, 100.0 - wallWidth);
     return map;
   }
+
+  private static double returnAlignementOrException(Position position, HashMap<Position, Double> map)
+      throws RuntimeException {
+    if (!map.containsKey(position))
+      throw new RuntimeException("aucune position " + position);
+    return map.get(position);
+  }
+
 }
