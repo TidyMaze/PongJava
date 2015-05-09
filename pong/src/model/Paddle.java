@@ -2,7 +2,7 @@ package model;
 
 
 
-public class Paddle implements RectangularShaped {
+public class Paddle implements RectangularShaped, Located {
 
   private static final double DEFAULT_LENGTH = 30;
   private static final double DEFAULT_POSITION = 50;
@@ -42,10 +42,20 @@ public class Paddle implements RectangularShaped {
   }
 
   public double getLeft() {
-    return PongModel.calculateHorizontalRelativePosition(type) - width / 2;
+    return getX() - width / 2;
   }
 
   public double getTop() {
     return verticalPosition - height / 2;
+  }
+
+  @Override
+  public double getX() {
+    return PongModel.calculateHorizontalRelativePosition(type);
+  }
+
+  @Override
+  public double getY() {
+    return verticalPosition;
   }
 }

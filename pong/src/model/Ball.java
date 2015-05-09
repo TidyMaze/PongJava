@@ -2,7 +2,7 @@ package model;
 
 import java.util.Observable;
 
-public class Ball extends Observable implements MovingObject, RectangularShaped {
+public class Ball extends Observable implements MovingObject, RectangularShaped, Located {
 
   private static final double DEFAULT_START_Y = 50.0;
 

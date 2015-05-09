@@ -1,9 +1,6 @@
 package model;
 
-public interface MovingObject {
-  double getX();
-
-  double getY();
+public interface MovingObject extends Located {
 
   double getHorizontalSpeed();
 

@@ -27,8 +27,14 @@ public class PongModel {
   }
 
   private void createRectangles() {
+    createWalls();
     createRectanglesForPaddles();
     createRectangleForBall();
+  }
+
+  private void createWalls() {
+    WallFactory wallFactory = new WallFactory();
+    assosBoundingBoxes.put(wallFactory.createWall(Position.LEFT), new MyDoubleRectangle2D());
   }
 
   private void createRectangleForBall() {
