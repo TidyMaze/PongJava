@@ -2,7 +2,7 @@ package model;
 
 import java.util.Observable;
 
-public class Ball extends Observable implements MovingObject, RectangularShaped, Located {
+public class Ball extends Observable implements MovingObject, RectangularShaped {
 
   private static final double DEFAULT_START_Y = 50.0;
 
@@ -118,10 +118,6 @@ public class Ball extends Observable implements MovingObject, RectangularShaped,
     if (isOutRight()) moveBallInRight();
     if (isOutUp()) moveBallInUp();
     if (isOutDown()) moveBallInDown();
-  }
-
-  private double getRadius() {
-    return radius;
   }
 
   private void moveBallInDown() {

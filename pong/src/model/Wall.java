@@ -1,6 +1,6 @@
 package model;
 
-public class Wall implements RectangularShaped, Located {
+public class Wall implements LocatedAndRectangularShaped {
 
   private double x;
   private double y;
