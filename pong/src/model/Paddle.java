@@ -1,7 +1,10 @@
 package model;
 
 
-public class Paddle {
+
+public class Paddle implements RectangularShaped {
+
+  private static final long serialVersionUID = 5320889545061066221L;
 
   private static final double DEFAULT_LENGTH = 30;
   private static final double DEFAULT_POSITION = 50;

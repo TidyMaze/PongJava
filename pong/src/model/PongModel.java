@@ -9,12 +9,38 @@ public class PongModel {
 
   private List<Paddle> paddles;
   private Ball ball;
-  private Map<Rectangle2D, RectangularShaped> assosBoundingBoxes;
+  private Map<RectangularShaped, Rectangle2D.Double> assosBoundingBoxes;
 
+  /**
+   * Constructeur principal, prend en paramètres les composants du model
+   * 
+   * @param paddles liste des raquettes à utiliser dans la partie
+   * @param ball balle à utiliser dans la partie
+   */
   public PongModel(List<Paddle> paddles, Ball ball) {
     this.paddles = paddles;
     this.ball = ball;
     this.assosBoundingBoxes = new HashMap<>();
+
+    createRectangles();
+  }
+
+  private void createRectangles() {
+    createRectanglesForPaddles();
+    createRectangleForBall();
+  }
+
+  private void createRectangleForBall() {
+    assosBoundingBoxes.put(ball, new Rectangle2D.Double());
+  }
+
+  private void createRectanglesForPaddles() {
+    for (Paddle p : paddles)
+      createRectangleFor(p);
+  }
+
+  private void createRectangleFor(Paddle p) {
+    assosBoundingBoxes.put(p, new Rectangle2D.Double());
   }
 
   public List<Paddle> getPaddles() {
@@ -27,5 +53,24 @@ public class PongModel {
 
   public void update() {
     ball.update();
+    updateRectangles();
+  }
+
+  private void updateRectangles() {
+    updatePaddlesRectangles();
+    updateBallRectangle();
+  }
+
+  private void updateBallRectangle() {
+    Rectangle2D rectBall = this.assosBoundingBoxes.get(ball);
+    rectBall.setRect(ball.getX() - ball.getDiameter() / 2, ball.getY() - ball.getDiameter() / 2,
+        ball.getDiameter(), ball.getDiameter());
+    System.out.println("ball : " + rectBall);
+  }
+
+  private void updatePaddlesRectangles() {
+    for (Paddle p : paddles) {
+
+    }
   }
 }
