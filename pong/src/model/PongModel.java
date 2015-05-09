@@ -61,7 +61,7 @@ public class PongModel {
   }
 
   public void update() {
-    ball.update();
+    ball.update(this);
     updateRectangles();
   }
 
@@ -104,5 +104,9 @@ public class PongModel {
       throw new RuntimeException("aucun type " + type);
 
     return map.get(type);
+  }
+
+  public Map<RectangularShaped, MyDoubleRectangle2D> getAssosBoundingBoxes() {
+    return assosBoundingBoxes;
   }
 }
