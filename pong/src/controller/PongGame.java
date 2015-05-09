@@ -8,15 +8,15 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.Timer;
 
-import view.PongGamePanel;
 import model.Paddle;
 import model.PongModel;
+import view.PongGamePanel;
 
 public class PongGame extends KeyAdapter {
 
   private static final double MOVE_REL = 4;
-  private PongModel model;
-  private PongGamePanel panel;
+  PongModel model;
+  PongGamePanel panel;
 
   public PongGame(PongModel model, PongGamePanel panel) {
     this.model = model;

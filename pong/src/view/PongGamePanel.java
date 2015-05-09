@@ -17,7 +17,6 @@ public class PongGamePanel extends JPanel {
   private static final long serialVersionUID = 4807803417286222422L;
 
   private static final int BORDER_GAP_REL = 10;
-  public static final int paddleWidth = 2;
   private PongModel pongModel;
 
   /**
@@ -96,9 +95,10 @@ public class PongGamePanel extends JPanel {
 
     int horizontalRelPosition = calculateHorizontalRelativePosition(type);
     double verticalRelPosition = p.getVerticalRelativePosition();
-    double paddleLength = p.getLength();
+    double paddleHeight = p.getHeight();
+    double paddleWidth = p.getWidth();
 
-    drawRelativeRect(g, horizontalRelPosition, verticalRelPosition, paddleWidth, paddleLength,
+    drawRelativeRect(g, horizontalRelPosition, verticalRelPosition, paddleWidth, paddleHeight,
         Color.WHITE);
   }
 

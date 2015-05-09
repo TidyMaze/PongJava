@@ -16,7 +16,6 @@ public class PongMain {
     pongWindow.addKeyListener(pongGame);
 
     pongWindow.setVisible(true);
-
     pongGame.startGame();
   }
 }

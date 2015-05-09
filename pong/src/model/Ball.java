@@ -186,4 +186,14 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
   private boolean isOutLeft() {
     return x < 0 + diameter / 2;
   }
+
+  @Override
+  public double getWidth() {
+    return diameter;
+  }
+
+  @Override
+  public double getHeight() {
+    return diameter;
+  }
 }

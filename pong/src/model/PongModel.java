@@ -78,8 +78,8 @@ public class PongModel {
   private void updatePaddleRectangle(Paddle p) {
     Rectangle2D rectPaddle = this.assosBoundingBoxes.get(p);
     rectPaddle.setRect(PongGamePanel.calculateHorizontalRelativePosition(p.getPlayerType())
-        - PongGamePanel.paddleWidth / 2,
-        p.getVerticalRelativePosition() - p.getLength() / 2,
+        - p.getWidth() / 2,
+        p.getVerticalRelativePosition() - p.getHeight() / 2,
         ball.getDiameter(), ball.getDiameter());
     System.out.println("paddle " + p.getPlayerType() + " : " + rectPaddle);
   }

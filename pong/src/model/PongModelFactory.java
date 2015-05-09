@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PongModelFactory {
-  private static final double DEFAULT_BALL_DIAMETER = 2;
   List<PlayerType> playerTypes = Arrays.asList(PlayerType.LEFT_PLAYER, PlayerType.RIGHT_PLAYER);
 
   public PongModel createModel2Players() {
