@@ -1,4 +1,4 @@
-package pong;
+package model;
 
 /**
  * Type de joueur, désigne la position du joueur (LEFT/RIGHT)

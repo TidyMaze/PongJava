@@ -1,4 +1,4 @@
-package pong;
+package model;
 
 import java.util.Observable;
 

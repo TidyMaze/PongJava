@@ -1,4 +1,4 @@
-package pong;
+package model;
 
 public interface MovingObject {
   double getX();

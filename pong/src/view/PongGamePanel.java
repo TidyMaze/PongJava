@@ -1,9 +1,16 @@
-package pong;
+package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+
+import Utils.CalcUtils;
+import Utils.ConversionUtils;
+import model.Ball;
+import model.Paddle;
+import model.PlayerType;
+import model.PongModel;
 
 public class PongGamePanel extends JPanel {
 

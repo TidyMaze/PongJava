@@ -1,4 +1,4 @@
-package pong;
+package Utils;
 
 public class CalcUtils {
 

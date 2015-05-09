@@ -1,4 +1,10 @@
-package pong;
+package controller;
+
+import model.PongModel;
+import model.PongModelFactory;
+import view.PongGamePanel;
+import view.PongGamePanelFactory;
+import view.PongWindow;
 
 public class PongMain {
 

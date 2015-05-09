@@ -1,4 +1,4 @@
-package pong;
+package controller;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Timer;
+
+import view.PongGamePanel;
+import model.Paddle;
+import model.PongModel;
 
 public class PongGame extends KeyAdapter {
 

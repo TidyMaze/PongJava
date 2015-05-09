@@ -1,4 +1,6 @@
-package pong;
+package view;
+
+import model.PongModel;
 
 public class PongGamePanelFactory {
 
