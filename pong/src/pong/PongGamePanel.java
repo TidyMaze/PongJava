@@ -63,8 +63,7 @@ public class PongGamePanel extends JPanel {
    * @param g Graphics sur lequel on dessine
    */
   private void drawBall(Ball ball, Graphics g) {
-    drawRelativeRect(g, ball.getX(), ball.getY(), ball.getDiameter(), ball.getDiameter(),
-        Color.WHITE);
+    drawRelativeSquare(g, ball.getX(), ball.getY(), ball.getDiameter(), Color.WHITE);
   }
 
 
@@ -99,19 +98,45 @@ public class PongGamePanel extends JPanel {
    * Dessine un rectangle, de la couleur choisie
    * 
    * @param g graphics sur lequel dessiner
-   * @param d absisse du centre du rectangle relatif (0-100)
-   * @param e ordonnee du centre du rectangle relatif (0-100)
-   * @param f épaisseur du rectangle relatif (0-100)
-   * @param h hauteur du rectangle relatif (0-100)
+   * @param x absisse du centre du rectangle relatif (0-100)
+   * @param y ordonnee du centre du rectangle relatif (0-100)
+   * @param diameter hauteur du rectangle relatif (0-100)
    * @param color couleur du rectangle
    */
-  private void drawRelativeRect(Graphics g, double d, double e, double f, double h, Color color) {
+  private void drawRelativeSquare(Graphics g, double x, double y, double diameter, Color color) {
     Color oldColor = changeColorAndSave(g, color);
 
-    int absX = ConversionUtils.toAbsolute(d, this.getWidth());
-    int absY = ConversionUtils.toAbsolute(e, this.getHeight());
-    int absW = ConversionUtils.toAbsolute(f, this.getWidth());
-    int absH = ConversionUtils.toAbsolute(h, this.getHeight());
+    int absX = ConversionUtils.toAbsolute(x, this.getWidth());
+    int absY = ConversionUtils.toAbsolute(y, this.getHeight());
+    int absDiam =
+        ConversionUtils.toAbsolute(diameter, CalcUtils.moy(this.getWidth(), this.getHeight()));
+
+    int top = absY - absDiam / 2;
+    int left = absX - absDiam / 2;
+
+    g.fillRect(left, top, absDiam, absDiam);
+
+    g.setColor(oldColor);
+  }
+
+  /**
+   * Dessine un rectangle, de la couleur choisie
+   * 
+   * @param g graphics sur lequel dessiner
+   * @param x absisse du centre du rectangle relatif (0-100)
+   * @param y ordonnee du centre du rectangle relatif (0-100)
+   * @param width épaisseur du rectangle relatif (0-100)
+   * @param height hauteur du rectangle relatif (0-100)
+   * @param color couleur du rectangle
+   */
+  private void drawRelativeRect(Graphics g, double x, double y, double width, double height,
+      Color color) {
+    Color oldColor = changeColorAndSave(g, color);
+
+    int absX = ConversionUtils.toAbsolute(x, this.getWidth());
+    int absY = ConversionUtils.toAbsolute(y, this.getHeight());
+    int absW = ConversionUtils.toAbsolute(width, this.getWidth());
+    int absH = ConversionUtils.toAbsolute(height, this.getHeight());
 
     int top = absY - absH / 2;
     int left = absX - absW / 2;
