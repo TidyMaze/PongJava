@@ -89,7 +89,7 @@ public class PongGamePanel extends JPanel {
   private void drawPaddle(Paddle p, Graphics g) {
     PlayerType type = p.getPlayerType();
 
-    int horizontalRelPosition = PongModel.calculateHorizontalRelativePosition(type);
+    double horizontalRelPosition = PongModel.calculateHorizontalRelativePosition(type);
     double verticalRelPosition = p.getVerticalPosition();
     double paddleHeight = p.getHeight();
     double paddleWidth = p.getWidth();

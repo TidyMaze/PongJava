@@ -11,7 +11,7 @@ public class PongModel {
   private Ball ball;
   private Map<RectangularShaped, MyDoubleRectangle2D> assosBoundingBoxes;
   private List<Wall> walls;
-  public static final int BORDER_GAP_REL = 10;
+  public static final double BORDER_GAP_REL = 10.0;
 
   /**
    * Constructeur principal, prend en paramètres les composants du model
@@ -95,14 +95,10 @@ public class PongModel {
    *         bordure
    * @throws RuntimeException Le type de joueur est invalide
    */
-  public static int calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
-    switch (type) {
-      case LEFT_PLAYER:
-        return PongModel.BORDER_GAP_REL;
-      case RIGHT_PLAYER:
-        return 100 - PongModel.BORDER_GAP_REL;
-      default:
-        throw new RuntimeException("Type de joueur invalide : " + type);
-    }
+  public static double calculateHorizontalRelativePosition(PlayerType type) throws RuntimeException {
+    HashMap<PlayerType, Double> map = new HashMap<>();
+    map.put(PlayerType.LEFT_PLAYER, PongModel.BORDER_GAP_REL);
+    map.put(PlayerType.RIGHT_PLAYER, 100.0 - PongModel.BORDER_GAP_REL);
+    return map.get(type);
   }
 }
