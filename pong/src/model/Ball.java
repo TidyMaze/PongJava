@@ -12,7 +12,7 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
 
   private static final double DEFAULT_V_SPEED = 0.50;
 
-  private static final double DEFAULT_DIAMETER = 3;
+  private static final double DEFAULT_RADIUS = 1.5;
 
   /**
    * X relatif (0-100)
@@ -25,11 +25,6 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
   private double y;
 
   /**
-   * Diamètre relatif (0-100)
-   */
-  private double diameter;
-
-  /**
    * Vitesse horizontale relative (0-100)
    */
   private double horizontalSpeed;
@@ -38,6 +33,8 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
    * Vitesse verticale relative (0-100)
    */
   private double verticalSpeed;
+
+  private double radius;
 
   /**
    * 
@@ -80,80 +77,77 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
    * @return Diamètre relatif (0-100)
    */
   public double getDiameter() {
-    return diameter;
-  }
-
-  public void setDiameter(double diameter) {
-    this.diameter = diameter;
+    return radius * 2;
   }
 
   public Ball() {
-    this(DEFAULT_DIAMETER, DEFAULT_START_X, DEFAULT_START_Y, DEFAULT_H_SPEED, DEFAULT_V_SPEED);
+    this(DEFAULT_RADIUS, DEFAULT_START_X, DEFAULT_START_Y, DEFAULT_H_SPEED, DEFAULT_V_SPEED);
   }
 
-  public Ball(double diameter, double x, double y, double hSpeed, double vSpeed) {
+  public Ball(double radius, double x, double y, double hSpeed, double vSpeed) {
     this.x = x;
     this.y = y;
-    this.diameter = diameter;
+    this.radius = radius;
     this.horizontalSpeed = hSpeed;
     this.verticalSpeed = vSpeed;
   }
 
+  /**
+   * Déplace la balle en prennant en compte les rebonds
+   */
   public void update() {
     x += horizontalSpeed;
     y += verticalSpeed;
 
-    if (isOutOfScreen())
-      moveBallInScreen();
+    handleBump();
 
     this.setChanged();
     notifyObservers();
   }
 
+  private void handleBump() {
+    if (isOutOfScreen())
+      moveBallInScreen();
+  }
+
+  /**
+   * Replace la balle dans l'écran si elle dépasse de l'écran
+   */
   private void moveBallInScreen() {
-    double rayon = diameter / 2;
-    if (isOutLeft())
-      moveBallInLeft(rayon);
-    if (isOutRight())
-      moveBallInRight(rayon);
-    if (isOutUp())
-      moveBallInUp(rayon);
-    if (isOutDown())
-      moveBallInDown(rayon);
+    if (isOutLeft()) moveBallInLeft();
+    if (isOutRight()) moveBallInRight();
+    if (isOutUp()) moveBallInUp();
+    if (isOutDown()) moveBallInDown();
   }
 
-  private void moveBallInDown(double rayon) {
+  private double getRadius() {
+    return radius;
+  }
+
+  private void moveBallInDown() {
     System.out.println("out up");
-    y = moveInIncrease(rayon, y);
+    y = 200 - y - getDiameter();
     invertVSpeed();
   }
 
 
-  private void moveBallInUp(double rayon) {
+  private void moveBallInUp() {
     System.out.println("out up");
-    y = moveInDecrease(rayon, y);
+    y = -y + getDiameter();
     invertVSpeed();
   }
 
 
-  private void moveBallInRight(double rayon) {
+  private void moveBallInRight() {
     System.out.println("out right");
-    x = moveInIncrease(rayon, x);
+    x = 200 - x - getDiameter();
     invertHSpeed();
   }
 
-  private void moveBallInLeft(double rayon) {
+  private void moveBallInLeft() {
     System.out.println("out left");
-    x = moveInDecrease(rayon, x);
+    x = -x + getDiameter();
     invertHSpeed();
-  }
-
-  private static double moveInDecrease(double rayon, double coord) {
-    return -coord + 2 * rayon;
-  }
-
-  private static double moveInIncrease(double rayon, double coord) {
-    return 200 - coord - 2 * rayon;
   }
 
   private void invertVSpeed() {
@@ -164,6 +158,11 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
     horizontalSpeed = -horizontalSpeed;
   }
 
+  /**
+   * Indique si la balle est en dehors de l'écran
+   * 
+   * @return boolean, true si une part de la balle est en dehors de la bordure du jeu
+   */
   private boolean isOutOfScreen() {
     return isOutLeft()
         || isOutRight()
@@ -172,36 +171,46 @@ public class Ball extends Observable implements MovingObject, RectangularShaped 
   }
 
   private boolean isOutDown() {
-    return y > 100 - diameter / 2;
+    return y > 100 - radius;
   }
 
   private boolean isOutUp() {
-    return y < 0 + diameter / 2;
+    return y < 0 + radius;
   }
 
   private boolean isOutRight() {
-    return x > 100 - diameter / 2;
+    return x > 100 - radius;
   }
 
   private boolean isOutLeft() {
-    return x < 0 + diameter / 2;
+    return x < 0 + radius;
   }
 
   @Override
   public double getWidth() {
-    return diameter;
+    return getDiameter();
   }
 
   @Override
   public double getHeight() {
-    return diameter;
+    return getDiameter();
   }
 
+  /**
+   * Calcule la position du bord gauche
+   * 
+   * @return position relative du bord gauche (0-100)
+   */
   public double getLeft() {
-    return x - getWidth() / 2;
+    return x - radius;
   }
 
+  /**
+   * Calcule la position du bord haut
+   * 
+   * @return position relative du bord haut (0-100)
+   */
   public double getTop() {
-    return y - getHeight() / 2;
+    return y - radius;
   }
 }
